@@ -1,0 +1,7 @@
+# VMTechCraft — https://www.vmtechcraft.com
+# All search engines and AI assistants may crawl the site (helps Google AI Overviews,
+# ChatGPT, Gemini and Perplexity recommend VMTechCraft). Block a bot here only if you choose to.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.vmtechcraft.com/sitemap.xml

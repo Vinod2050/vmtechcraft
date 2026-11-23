@@ -1,0 +1,110 @@
+# VMTechCraft — Apache config for www.vmtechcraft.com (GoDaddy cPanel)
+# Replaces the server's existing .htaccess. Keeps its behaviour (HTTPS, non-www -> www,
+# clean URLs, security headers) and fixes the Content-Security-Policy so Google Fonts and
+# the web3forms contact form are allowed.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Force HTTPS (straight to www, so http://vmtechcraft.com needs only one redirect)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://www.vmtechcraft.com%{REQUEST_URI} [L,R=301]
+
+  # 2. non-www -> www (single preferred domain: https://www.vmtechcraft.com)
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1) [NC]
+  RewriteRule ^ https://www.vmtechcraft.com%{REQUEST_URI} [L,R=301]
+
+  # 3. /index.html, /index, /services/x/index.html -> folder URL (/, /services/x/)
+  RewriteCond %{THE_REQUEST} \s/+((?:[^?\s]*/)?)index(?:\.html)?[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # 4. /page.html -> /page (clean URLs; one URL per page for Google)
+  RewriteCond %{THE_REQUEST} \s/+([^?\s]+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [L,R=301]
+
+  # 5. Serve /page from page.html internally
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "DENY"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # Allowed third parties:
+  #   fonts.googleapis.com / fonts.gstatic.com -> Google Fonts (styles + font files)
+  #   api.web3forms.com                        -> contact form (fetch + no-JS form post)
+  #   www.google.com (frame)                   -> Google Maps embed, for the future Pune page
+  #   youtube-nocookie / i.ytimg.com           -> kept from the previous policy
+  # JSON-LD (<script type="application/ld+json">) is not executed, so CSP does not affect it.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; frame-src https://www.google.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+</IfModule>
+
+# ---------- Speed: compression ----------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ---------- Speed: browser caching ----------
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+</IfModule>
+<IfModule mod_headers.c>
+  # HTML: always revalidate, so visitors get changes immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # CSS/JS are linked with ?v=..., so a new version gets a new URL: cache for a year
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Images, video and fonts: 30 days
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|ico|mp4|woff2|woff)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# Block files that must never be public (backups, archives, strategy docs, dotfiles)
+<FilesMatch "(?i)\.(zip|rar|7z|tar|gz|bak|sql|log|docx?|xlsx?|md|ini|env|bat|cmd|ps1|py|sh)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# ---------- Fix 9: old Tier 3 country URLs -> regional pages ----------
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/website-developer-qatar/?$ https://www.vmtechcraft.com/website-developer-gulf/
+  RedirectMatch 301 ^/website-developer-kuwait/?$ https://www.vmtechcraft.com/website-developer-gulf/
+  RedirectMatch 301 ^/website-developer-oman/?$ https://www.vmtechcraft.com/website-developer-gulf/
+  RedirectMatch 301 ^/website-developer-bahrain/?$ https://www.vmtechcraft.com/website-developer-gulf/
+  RedirectMatch 301 ^/website-developer-sweden/?$ https://www.vmtechcraft.com/website-developer-nordics/
+  RedirectMatch 301 ^/website-developer-norway/?$ https://www.vmtechcraft.com/website-developer-nordics/
+  RedirectMatch 301 ^/website-developer-denmark/?$ https://www.vmtechcraft.com/website-developer-nordics/
+  RedirectMatch 301 ^/website-developer-finland/?$ https://www.vmtechcraft.com/website-developer-nordics/
+  RedirectMatch 301 ^/website-developer-belgium/?$ https://www.vmtechcraft.com/website-developer-europe/
+  RedirectMatch 301 ^/website-developer-austria/?$ https://www.vmtechcraft.com/website-developer-europe/
+  RedirectMatch 301 ^/website-developer-france/?$ https://www.vmtechcraft.com/website-developer-europe/
+  RedirectMatch 301 ^/website-developer-spain/?$ https://www.vmtechcraft.com/website-developer-europe/
+  RedirectMatch 301 ^/website-developer-italy/?$ https://www.vmtechcraft.com/website-developer-europe/
+  RedirectMatch 301 ^/website-developer-malaysia/?$ https://www.vmtechcraft.com/website-developer-asia/
+  RedirectMatch 301 ^/website-developer-hong-kong/?$ https://www.vmtechcraft.com/website-developer-asia/
+  RedirectMatch 301 ^/website-developer-south-africa/?$ https://www.vmtechcraft.com/website-developer-africa/
+  RedirectMatch 301 ^/website-developer-kenya/?$ https://www.vmtechcraft.com/website-developer-africa/
+  RedirectMatch 301 ^/services/wordpress-development/?$ https://www.vmtechcraft.com/services/business-website-development/
+</IfModule>
+# ---------- end Tier 3 redirects ----------
