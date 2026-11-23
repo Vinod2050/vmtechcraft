@@ -1,0 +1,68 @@
+# VMTechCraft
+
+> VMTechCraft is the freelance studio of Vinod Mache, a web and software developer based in Pune, Maharashtra, India. It builds business websites, e-commerce stores, custom web apps and business software (billing, inventory, HRMS) for clients in India and worldwide.
+
+- Based in: Pune, Maharashtra, India. Work is delivered remotely for international clients.
+- Email: vinod.mache@vmtechcraft.com
+- Phone and WhatsApp: +91 94030 38498
+- Website: https://www.vmtechcraft.com/
+
+## Main pages
+
+- [Home](https://www.vmtechcraft.com/): Overview of VMTechCraft and its services
+- [About](https://www.vmtechcraft.com/about): About Vinod Mache
+- [Work](https://www.vmtechcraft.com/work): Portfolio of live client websites
+- [Process](https://www.vmtechcraft.com/process): The four-step development process
+- [Contact](https://www.vmtechcraft.com/contact): Project enquiry form and contact details
+
+## Services
+
+- [All services](https://www.vmtechcraft.com/services/): Web and software development services
+- [Business website development](https://www.vmtechcraft.com/services/business-website-development/): Company and small business websites
+- [E-commerce website development](https://www.vmtechcraft.com/services/ecommerce-website-development/): Online stores
+- [Custom web application development](https://www.vmtechcraft.com/services/custom-web-application-development/): Custom web apps
+- [Billing software development](https://www.vmtechcraft.com/services/billing-software-development/): Billing and invoicing software
+- [Management software development](https://www.vmtechcraft.com/services/management-software-development/): CRM, ERP and HR management software
+- [Website redesign](https://www.vmtechcraft.com/services/website-redesign/): Redesigns of existing websites
+- [Website maintenance](https://www.vmtechcraft.com/services/website-maintenance/): Ongoing maintenance and support
+
+## International clients
+
+- [Worldwide](https://www.vmtechcraft.com/website-developer-worldwide/)
+- [United Arab Emirates and Dubai](https://www.vmtechcraft.com/website-developer-uae/)
+- [Saudi Arabia](https://www.vmtechcraft.com/website-developer-saudi-arabia/)
+- [Qatar, Kuwait, Oman and Bahrain](https://www.vmtechcraft.com/website-developer-gulf/)
+- [United States](https://www.vmtechcraft.com/website-developer-usa/)
+- [United Kingdom](https://www.vmtechcraft.com/website-developer-uk/)
+- [Canada](https://www.vmtechcraft.com/website-developer-canada/)
+- [Australia](https://www.vmtechcraft.com/website-developer-australia/)
+- [New Zealand](https://www.vmtechcraft.com/website-developer-new-zealand/)
+- [Singapore](https://www.vmtechcraft.com/website-developer-singapore/)
+- [Europe](https://www.vmtechcraft.com/website-developer-europe/)
+- [Germany](https://www.vmtechcraft.com/website-developer-germany/)
+- [Netherlands](https://www.vmtechcraft.com/website-developer-netherlands/)
+- [Ireland](https://www.vmtechcraft.com/website-developer-ireland/)
+- [Switzerland](https://www.vmtechcraft.com/website-developer-switzerland/)
+- [Nordics](https://www.vmtechcraft.com/website-developer-nordics/)
+- [Israel](https://www.vmtechcraft.com/website-developer-israel/)
+- [Malaysia and Hong Kong](https://www.vmtechcraft.com/website-developer-asia/)
+- [South Africa and Kenya](https://www.vmtechcraft.com/website-developer-africa/)
+
+## India
+
+- [India](https://www.vmtechcraft.com/website-developer-india/)
+- [Pune](https://www.vmtechcraft.com/website-developer-pune/)
+- [Pimpri-Chinchwad](https://www.vmtechcraft.com/website-developer-pimpri-chinchwad/)
+- [Mumbai](https://www.vmtechcraft.com/website-developer-mumbai/)
+- [Thane and Navi Mumbai](https://www.vmtechcraft.com/website-developer-thane-navi-mumbai/)
+- [Maharashtra](https://www.vmtechcraft.com/website-developer-maharashtra/)
+- [Bangalore](https://www.vmtechcraft.com/web-developer-bangalore/)
+- [Hyderabad](https://www.vmtechcraft.com/web-developer-hyderabad/)
+- [Delhi NCR](https://www.vmtechcraft.com/website-developer-delhi-ncr/)
+- [Chennai](https://www.vmtechcraft.com/website-developer-chennai/)
+- [Kolkata](https://www.vmtechcraft.com/website-developer-kolkata/)
+- [Ahmedabad](https://www.vmtechcraft.com/website-developer-ahmedabad/)
+
+## Optional
+
+- [Sitemap](https://www.vmtechcraft.com/sitemap.xml): Full list of website pages
