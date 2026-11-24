@@ -56,8 +56,9 @@
     swatches.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.themeSet === t)));
     if (metaTheme) metaTheme.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--forest').trim());
   };
-  let saved = 'peach'; // default theme
-  try { saved = localStorage.getItem('vm-theme') || 'peach'; } catch (e) {}
+  // Each page sets its default in <html data-theme>; a visitor's saved choice takes priority.
+  let saved = document.documentElement.getAttribute('data-theme') || 'forest';
+  try { saved = localStorage.getItem('vm-theme') || saved; } catch (e) {}
   if (document.querySelector(`[data-theme-set="${saved}"]`)) applyTheme(saved);
   swatches.forEach((b) => b.addEventListener('click', () => {
     applyTheme(b.dataset.themeSet);

@@ -1020,6 +1020,9 @@ main:has(> .contact:last-child) + .footer .footer-hills { fill: var(--mint); }
   --accent-lt: #8fd3cb; --accent-lt-rgb: 143, 211, 203; --tint-1: #b5e3de; --tint-1-rgb: 181, 227, 222; --tint-2: #a9c6c2; --tint-3: #dcefec; --tint-3-rgb: 220, 239, 236;
   --on-accent: #ffffff; --mint: #ebf6f5; --mint-2: #d5eeeb; --stone: #f2f6f5; --ink: #13241f; --muted: #52655f; --line: #c4d6d2;
 }
+/* Ocean and teal: deeper solid accents so white button text stays readable */
+:root[data-theme="ocean"] :is(.pill:not(.pill-outline):not(.pill-light), .call-pill, .logo-badge b, .tech-concept .tech-ico, .promo, .stop-pin) { --sage: #3a74a0; --sage-rgb: 58, 116, 160; --sage-d: #2c5f86; --sage-d-rgb: 44, 95, 134; }
+:root[data-theme="teal"] :is(.pill:not(.pill-outline):not(.pill-light), .call-pill, .logo-badge b, .tech-concept .tech-ico, .promo, .stop-pin) { --sage: #2b756d; --sage-rgb: 43, 117, 109; --sage-d: #215d57; --sage-d-rgb: 33, 93, 87; }
 /* Smooth switch between themes */
 body, .header, .footer, .facts, .services, .promo, .pill, .call-pill, .page-hero, .contact { transition: background-color .4s ease, color .4s ease, border-color .4s ease; }
 
